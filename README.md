@@ -27,6 +27,15 @@ internal APIs may be changed without warning.
 
 Design discussions are conducted in https://www.facebook.com/groups/rocksdb.dev/ and https://rocksdb.slack.com/
 
+## Build
+CentOS-6 glibc-2.12
+/opt/rh/devtoolset-8/root/usr/bin/gcc
+
+yum install glibc-static libstdc++-devel
+
+PORTABLE=1 PLATFORM_LDFLAGS="-static-libstdc++ -static-libgcc" DISABLE_WARNING_AS_ERROR=1 make rocksdbjavastatic VERBOSE=1
+
+
 ## License
 
 RocksDB is dual-licensed under both the GPLv2 (found in the COPYING file in the root directory) and Apache 2.0 License (found in the LICENSE.Apache file in the root directory).  You may select, at your option, one of the above-listed licenses.
