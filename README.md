@@ -1,5 +1,4 @@
 ## RocksDB: A Persistent Key-Value Store for Flash and RAM Storage
-
 [![CircleCI Status](https://circleci.com/gh/facebook/rocksdb.svg?style=svg)](https://circleci.com/gh/facebook/rocksdb)
 [![TravisCI Status](https://travis-ci.org/facebook/rocksdb.svg?branch=master)](https://travis-ci.org/facebook/rocksdb)
 [![Appveyor Build status](https://ci.appveyor.com/api/projects/status/fbgfu0so3afcno78/branch/master?svg=true)](https://ci.appveyor.com/project/Facebook/rocksdb/branch/master)
@@ -27,15 +26,23 @@ internal APIs may be changed without warning.
 
 Design discussions are conducted in https://www.facebook.com/groups/rocksdb.dev/ and https://rocksdb.slack.com/
 
+
+
+## License
+RocksDB is dual-licensed under both the GPLv2 (found in the COPYING file in the root directory) and Apache 2.0 License (found in the LICENSE.Apache file in the root directory).  You may select, at your option, one of the above-listed licenses.
+
+
+
 ## Build
-CentOS-6 glibc-2.12
+CentOS-6 X86_64
+glibc-2.12
 /opt/rh/devtoolset-8/root/usr/bin/gcc
 
 yum install glibc-static libstdc++-devel
 
-PORTABLE=1 PLATFORM_LDFLAGS="-static-libstdc++ -static-libgcc" DISABLE_WARNING_AS_ERROR=1 make rocksdbjavastatic VERBOSE=1
+export JAVA_HOME=/data/jdk8
+export PATH=$JAVA_HOME/bin:$PATH
 
+DEBUG_LEVEL=0 PORTABLE=1 PLATFORM_LDFLAGS="-static-libstdc++ -static-libgcc" DISABLE_WARNING_AS_ERROR=1 make rocksdbjavastatic VERBOSE=1
 
-## License
-
-RocksDB is dual-licensed under both the GPLv2 (found in the COPYING file in the root directory) and Apache 2.0 License (found in the LICENSE.Apache file in the root directory).  You may select, at your option, one of the above-listed licenses.
+如果关闭PORTABLE，即PORTABLE=0，则会产生 -DHAVE_SSE42  -DHAVE_PCLMUL  -DHAVE_AVX2 等编译参数
