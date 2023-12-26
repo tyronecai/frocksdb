@@ -35,14 +35,21 @@ RocksDB is dual-licensed under both the GPLv2 (found in the COPYING file in the 
 
 ## Build
 CentOS-6 X86_64
+
 glibc-2.12
+
 /opt/rh/devtoolset-8/root/usr/bin/gcc
+
 
 yum install glibc-static libstdc++-devel
 
+
 export JAVA_HOME=/data/jdk8
+
 export PATH=$JAVA_HOME/bin:$PATH
 
+
 DEBUG_LEVEL=0 PORTABLE=1 PLATFORM_LDFLAGS="-static-libstdc++ -static-libgcc" DISABLE_WARNING_AS_ERROR=1 make rocksdbjavastatic VERBOSE=1
+
 
 如果关闭PORTABLE，即PORTABLE=0，则会产生 -DHAVE_SSE42  -DHAVE_PCLMUL  -DHAVE_AVX2 等编译参数
